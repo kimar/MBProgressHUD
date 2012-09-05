@@ -412,6 +412,11 @@ typedef void (^MBProgressHUDCompletionBlock)();
  */
 - (void)hudWasHidden:(MBProgressHUD *)hud;
 
+/**
+ * Called if user touches the HUD
+ */
+- (void)hudViewDidReceiveTouch:(MBProgressHUD *)hud;
+
 @end
 
 

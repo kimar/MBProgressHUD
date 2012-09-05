@@ -289,4 +289,8 @@
 	HUD = nil;
 }
 
+- (void)hudViewDidReceiveTouch:(MBProgressHUD *)hud {
+	NSLog(@"hudViewDidReceiveTouch:");
+}
+
 @end

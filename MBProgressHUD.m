@@ -187,6 +187,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[self updateIndicators];
 		[self registerForKVO];
 		[self registerForNotifications];
+        [self initializeGestureRecognizers];
 	}
 	return self;
 }
@@ -717,6 +718,20 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	[self setTransform:rotationTransform];
 	if (animated) {
 		[UIView commitAnimations];
+	}
+}
+
+#pragma mark - Gesturerecognizers
+- (void) initializeGestureRecognizers {
+    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                      action:@selector(handleSingleHudTap:)];
+    singleFingerTap.numberOfTapsRequired = 1;
+    [self addGestureRecognizer:singleFingerTap];
+}
+
+- (void) handleSingleHudTap:(id)sender {
+    if ([delegate respondsToSelector:@selector(hudViewDidReceiveTouch:)]) {
+		[delegate performSelector:@selector(hudViewDidReceiveTouch:) withObject:self];
 	}
 }
 
